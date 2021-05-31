@@ -47,3 +47,7 @@ Current status
 | pub_rec_backruptcies |                    | This seems like a consistent field across the two sources.                                                                    |
 | age                  |                    | This seems like a consistent field across the two sources.                                                                    |
 | pay_status           |                    | Old customer table has max value only till 8? is that expected?                                                               |
+
+
+
+ID is not distinct between the customer tables. Are the two tabels related? Or should it be sequential? 
