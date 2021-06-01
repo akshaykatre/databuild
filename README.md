@@ -21,7 +21,7 @@ Current status
 | is_any               | boolean?           | missing                                                                                                                       |
 | is_other             | boolean?           | missing                                                                                                                       |
 | annual_inc           | int                |  - How is the income from oldcustomer a range and not a number?                                                               |
-|                      |                    |    - What should be the choice?                                                                                               |
+|                      |                    |    - What should be the choice? -- pick the average in this case                                                                                               |
 |                      |                    |    - Interestingly, it has only 12 distinct values for these ranges!                                                          |
 |                      |                    | - Align data type  to integer                                                                                                 |
 | verification_status  | char               |  - Deliver this as a field with a character data type                                                                         |
@@ -31,7 +31,7 @@ Current status
 | is_source_verified   | booleans?          | missing                                                                                                                       |
 | issue_d              | date               | - Called "issued" in newcustomer table                                                                                        |
 |                      |                    | - Align formatting to date format                                                                                             |
-|                      |                    | - Request says it wants the month, so what is the format in which this data is expected to be delivered? YYYYMM? MM? MMYYYY?  |
+|                      |                    | - Request says it wants the month, so what is the format in which this data is expected to be delivered? YYYYMM  |
 | purpose              | char               | - The IDs have a small mis-match, is that an issue? how should it be resolved?                                                |
 |                      |                    | - The tables need alignment since from the newcustomer it is again the ID that is mentioned and char itself                   |
 | addr_state           | char               | - The IDs have a small mis-match, is that an issue? how should it be resolved?                                                |
