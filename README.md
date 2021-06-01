@@ -14,7 +14,7 @@ Current status
 | emp_length           | int                | - Comes from two differently named attributes in the two tables                                                               |
 |                      |                    | - Align into a single attribute with data type integer                                                                        |
 |                      |                    | - DQ checks on source? Completeness?                                                                                          |
-| home_ownership      | char               | missing                                                                                                                       |
+| home_ownership      | char                | Available from two different source fields in the two tables                                                                   |
 | is_mortgage          | boolean?           | missing                                                                                                                       |
 | is_rent              | boolean?           | missing                                                                                                                       |
 | is_own               | boolean?           | missing                                                                                                                       |
