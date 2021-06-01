@@ -50,4 +50,4 @@ Current status
 
 
 
-ID is not distinct between the customer tables. Are the two tabels related? Or should it be sequential? 
+ID is not distinct between the customer tables, but these are indeed distinct customers. Therefore, it should be sufficient to have separate IDs from the two tables. 
