@@ -45,7 +45,8 @@ out_df = pandas.DataFrame(map_output.items(), columns = ['colname', 'datatype'])
 conn = pymssql.connect(server="localhost", database="customer", user=login['username'], password=login['password'])
 
 ## Loop through the fields for the expected output, to get an indication of which fields are 
-## existing with the same name in some form in the tables, and which ones do not 
+## existing with the same name in the two tables, and which ones do not 
+
 for rows in out_df.iterrows():
     colname, datatype = rows[1]['colname'], rows[1]['datatype']
     print("For column: ", colname, " having datatype: ", datatype)
@@ -54,7 +55,7 @@ for rows in out_df.iterrows():
         #continue
         print(df)
     else: 
-        continue
+       # continue
         print("Dataframe is empty")
     print("*"*20)
 
@@ -62,7 +63,6 @@ for rows in out_df.iterrows():
 
 '''
 The following fields are missing from the final deliverable:
- - home_owners_hip: is this the same as home_ownership_id? expected output for _hip is char, so what does the user want to see here? 
  - is_mortgage
  - is_rent
  - is_own
@@ -71,7 +71,6 @@ The following fields are missing from the final deliverable:
  - is_verified
  - is_not_verified
  - is_source_verified: how is this different from is_verified? Is this the same as verification_status_id? 
- Need to confirm this with people tomorrow: 1st June. 
 
  For the others, let's look at a SQL notebook to verify if everything in order 
 '''

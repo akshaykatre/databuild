@@ -25,3 +25,5 @@ for index, rows in columns.iterrows():
     allchecks.append(check)
 
 df = pandas.concat(allchecks)
+
+df.to_csv("test_data.csv", index=False)

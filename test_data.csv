@@ -46,8 +46,11 @@ No_Of_EMPTY,No_Of_NA,No_Of_NULL,CountRows,Total_Missing_Val,Per_Missing_val,sche
 ,,,58852,0,0.0,inter,loan_term_details,id
 ,,,58852,0,0.0,inter,loan_term_details,loan_amount
 ,,,58852,0,0.0,inter,loan_term_details,term
+,,,58852,0,0.0,inter,annual_inc,annual_inc
+,,,58852,0,0.0,inter,annual_inc,id
 ,,,58852,0,0.0,freeze,deliver_tables,addr_state
 ,,,58852,0,0.0,freeze,deliver_tables,age
+,,,58852,0,0.0,freeze,deliver_tables,annual_inc
 ,,,58852,0,0.0,freeze,deliver_tables,dti
 ,,3342,58852,3342,0.05678651532658194,freeze,deliver_tables,emp_length
 ,,8598,58852,8598,0.14609528987969822,freeze,deliver_tables,fico_range_high

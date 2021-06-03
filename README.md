@@ -17,7 +17,25 @@ The next few paragraphs documents in details the above five steps.
 ### 1. Conversion of database from SQLite to SQL Server 
 
 
-The motivation to build the database on MS SQL Server is to be able to test and reuse existing python libraries for data quality and data lineage purposes. (See below for more details)
+The motivation to build the database on MS SQL Server is to be able to test and reuse existing python libraries for data quality and data lineage purposes. (See below for more details). The following are the steps followed to convert the tables from SQLite to SQL Server: 
+
+To perform a dump of the data from SQLite to SQL Server, is done by literally creating the SQL scripts required and then running the SQL scripts on the database. 
+
+Open the sqlite database with: ``` sqlite3 <nameofdb>.sqlite3```
+```
+.output alloutput.sql 
+.dump 
+```
+
+You may have to perform some small corrections to the SQL script, but essentially the script is then all you need. 
+
+With ```sqlcmd``` you can now create your tables/ databases as described in the script
+```
+sqlcmd -S localhost -i alloutput.sql
+```
+
+The scripts used in converting these tables can be found: [sqlserver_tables](https://github.com/akshaykatre/databuild/tree/master/sqlserver_tables)
+
 
 --- 
 ### 2. Initial analysis on the data
@@ -62,9 +80,9 @@ Table below:
 | issue_d              | date               | - Called "issued" in newcustomer table                                                                                        |
 |                      |                    | - Align formatting to date format                                                                                             |
 |                      |                    | - Request says it wants the month, so what is the format in which this data is expected to be delivered? YYYYMM  |
-| purpose              | char               | - The IDs have a small mis-match, is that an issue? how should it be resolved? **The names of the keys were converted to singular words for alignment between two sources**                                               |
+| purpose              | char               | - The IDs have a small mis-match, is that an issue? how should it be resolved?  
 |                      |                    | - The tables need alignment since from the newcustomer it is again the ID that is mentioned and char itself                   |
-| addr_state           | char               | - The IDs have a small mis-match, is that an issue? how should it be resolved? **The ID was offset by 51 to match the two tables**                                                |
+| addr_state           | char               | - The IDs have a small mis-match, is that an issue? how should it be resolved?     |
 |                      |                    | - The tables need alignment since from the newcustomer it is again the ID that is mentioned and char itself                   |
 | dti                  |                    | This is a consistent field across the two sources.                                                                    |
 | fico_range_low       |                    | This is a consistent field across the two sources.                                                                    |
@@ -94,10 +112,20 @@ This attribute is delivered as an integer and has a base of 1000. The string 'k'
 #### Term
 This attribute is delivered as an integer and has been delivered as number of months, consistent with the table *api_oldcustomer*.
 
+The above two changes can be found in: [loan_amnt.sql](https://github.com/akshaykatre/databuild/blob/0fb3b6351c5065871d1b3f6104b366758f5613d4/build_tables/loan_amnt.sql)
+
 
 #### Annual Inc
 The annual income is delivered as an integer. The data from the *api_oldcustomer* table was provided as a *list* stating the range of the annual income instead of a number. In these cases we have used the average value between the two. This can be found in the file: [annual_inc.py](https://github.com/akshaykatre/databuild/blob/0fb3b6351c5065871d1b3f6104b366758f5613d4/build_tables/annual_inc.py)
 
 #### Purpose 
-The values of keys between the *api_newcustomer* and *api_oldcustomer* were misaligned by singular and plural words, the choice was made to convert all values to singular. This can be found in the file: [keychanges.sql](https://github.com/akshaykatre/databuild/blob/0fb3b6351c5065871d1b3f6104b366758f5613d4/build_tables/keychanges.sql)
+The values of keys between the *api_newcustomer* and *api_oldcustomer* were misaligned by singular and plural words, the choice was made to convert all values to singular. 
 
+#### Addr_state 
+The key of this attribute was offset by 51 in the *api_addr_state* table causing a misalignment between the two source tables when combined. Therefore, the key value was subtracted by 51 when building the final set. 
+
+The above two changes can be found in the file: [keychanges.sql](https://github.com/akshaykatre/databuild/blob/0fb3b6351c5065871d1b3f6104b366758f5613d4/build_tables/keychanges.sql)
+
+
+### 4. Build a data quality check 
+An existing library [pysqldq](https://pypi.org/project/pysqldq/) was used to run an out of the box completeness check that detects NULLs, empty strings and fields filled "NA". The output of the DQ can be visualised as a dataframe that can be converted into your preferred output format choice. 
