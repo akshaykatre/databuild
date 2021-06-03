@@ -141,4 +141,4 @@ The DQ dashboard shows that the completeness of data is acceptable based on the 
 
 In addition, we can also extract the lineage of each individual attribute that is delivered in the final table. This requires further development, but essentailly we can deliver the images such as the following to trace the lineage of the attributes. 
 
-![]()
+![](https://github.com/akshaykatre/databuild/blob/655c89cce2ef927820024e1ee26bda6b2882954d/fico_high.png)
