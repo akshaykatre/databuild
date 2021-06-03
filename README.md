@@ -1,15 +1,34 @@
 # Data delivery 
 
-The following document is based on the delivery of data as requested in the following document: [Assignment Data Engineering]()
+The following document is based on the delivery of data as requested in the following document: [Assignment Data Engineering](https://github.com/akshaykatre/databuild/blob/c4fdabc97f122c4243d4bb9fbed586790449a172/Assignment%20data%20engineering%20description%20pdf%20format.pdf)
+
+## Plan of action 
+
+During the data delivery process, the following steps were followed: 
+
+1. Converted SQLite database into an SQL Server database  
+2. Performed an initial analysis into the data
+3. Build the data tables and uploaded the scripts on GIT 
+4. Build a data quality check to check for completeness of the data
+5. Build a dashboard for the data quality check and deploy it on the web
+
+The next few paragraphs documents in details the above five steps. 
+
+### 1. Conversion of database from SQLite to SQL Server 
 
 
+The motivation to build the database on MS SQL Server is to be able to test and reuse existing python libraries for data quality and data lineage purposes. (See below for more details)
+
+--- 
+### 2. Initial analysis on the data
 
 
+Based on the [Assignment Data Engineering](https://github.com/akshaykatre/databuild/blob/c4fdabc97f122c4243d4bb9fbed586790449a172/Assignment%20data%20engineering%20description%20pdf%20format.pdf) the final dataset is a combination of user data from two underlying tables. An initial analysis is performed on the attributes from the source tables *api_newcustomer* and *api_oldcustomer* tables. The following table summaries the differences and changes required to align the data from the two sources.
 
+--- 
 
+Table below: 
 
-
-Current status 
 
 | column               | delivery data type | Required fixes                                                                                                                |
 |----------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------|

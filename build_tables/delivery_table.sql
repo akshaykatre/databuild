@@ -18,6 +18,7 @@ create table freeze.deliver_tables(
     IS_OWN bit,
     IS_ANY bit,
     IS_OTHER bit,
+    annual_inc int,
     verification_status char(20),
     is_verified bit,
     is_not_verified bit,
@@ -38,7 +39,7 @@ create table freeze.deliver_tables(
     age int, 
     pay_status int
     constraint PK_delivery_ID primary key (id)
-)
+);
 
 insert into freeze.deliver_tables
 select 
@@ -55,7 +56,8 @@ select
     ,homeown.IS_RENT                 
     ,homeown.IS_OWN                  
     ,homeown.IS_ANY                  
-    ,homeown.IS_OTHER                
+    ,homeown.IS_OTHER   
+    ,anninc.annual_inc             
     ,vstat.verification_status     
     ,vstat.is_verified             
     ,vstat.is_not_verified         
@@ -90,3 +92,5 @@ left join inter.state stat
 on customers.id = stat.id
 left join inter.purpose purp 
 on purp.id = customers.id
+left join inter.annual_inc anninc
+on anninc.id = customers.id
