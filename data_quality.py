@@ -6,7 +6,7 @@ from pysqldq import dqchecks
 cfile = open("dbconfig.json")
 login = json.load(cfile)
 
-conn = pymssql.connect(server="localhost", database="customer", user=login['username'], password=login['password'])
+conn = pymssql.connect(server=login['server'], database="customer", user=login['username'], password=login['password'])
 
 columns = pandas.read_sql_query('select column_name, table_name, table_schema from information_schema.columns', conn)
 
