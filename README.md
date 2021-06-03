@@ -129,3 +129,16 @@ The above two changes can be found in the file: [keychanges.sql](https://github.
 
 ### 4. Build a data quality check 
 An existing library [pysqldq](https://pypi.org/project/pysqldq/) was used to run an out of the box completeness check that detects NULLs, empty strings and fields filled "NA". The output of the DQ can be visualised as a dataframe that can be converted into your preferred output format choice. 
+
+### 5. DQ Dashboard
+The dashboard for the data quality check of completeness is available via a heroku app: [https://dq-dashboard-app.herokuapp.com/](https://dq-dashboard-app.herokuapp.com/)
+A threshold of 1% is set such that any column missing more than 1% of the data is highlighted as red. The selection of the threshold was arbitrary. 
+
+## Conclusions and further developments
+The final delivery table is available in **freeze.deliver_table**, the script for the delivery table is available here: [delivery_table.sql](https://github.com/akshaykatre/databuild/blob/b1a3b9a7d8b844b52bdaa8dcd34854609232cba7/build_tables/delivery_table.sql). 
+
+The DQ dashboard shows that the completeness of data is acceptable based on the input RAW data that is available. In the future, these tests can be complemented by descriptive statistics tests, outlier tests etc. 
+
+In addition, we can also extract the lineage of each individual attribute that is delivered in the final table. This requires further development, but essentailly we can deliver the images such as the following to trace the lineage of the attributes. 
+
+![]()
