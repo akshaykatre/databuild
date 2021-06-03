@@ -21,7 +21,7 @@ create table inter.loan_term_details(
 
 with CTE as (
 SELECT 
-    id 
+    id * -1 as id 
     ,convert(float, left(loan_amnt, len(loan_amnt)-1))* 1000 as loan_amount 
     ,convert(float, left(term, len(term)-1))*12 as term
 from 
@@ -30,7 +30,7 @@ from
 union
 
 SELECT 
-    id * - 1 as id, 
+    id, 
     loan_amnt as loan_amount,
     term
 from [customer].[raw].[api_oldcustomer]

@@ -28,7 +28,7 @@ create table inter.api_state(
 
 insert into inter.api_state
 select 
-    id
+    id-51 -- It seems in the table there is an offset by 51 :) 
     , right([name], 2) as [name]
 from [raw].api_state  
 

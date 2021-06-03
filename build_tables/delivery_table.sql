@@ -2,7 +2,7 @@
 This script is for the final delivery table 
 **/
 
-drop table if exists freeze.delivery_tables
+drop table if exists freeze.deliver_tables
 create table freeze.deliver_tables( 
     id int not null,
     loan_status bit,
